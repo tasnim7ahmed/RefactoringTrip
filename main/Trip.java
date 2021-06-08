@@ -18,11 +18,11 @@ public class Trip {
 
     public void requestTrip() {
         if (rideType == "MOTOR_BIKE") {
-            System.out.println("== Ride Swift in Bike ==");
+            new MotorBikeRide(noOfPassengers,distInKM,timeInMinutes).getRideRequestMessage();
         } else if (rideType == "SEVEN_SEATER") {
-            System.out.println("== Ride with Friends and Family in Seven-Seater ==");
+            new SevenSeaterRide(noOfPassengers,distInKM,timeInMinutes).getRideRequestMessage();
         } else {
-            System.out.println("== Comfortable Sedan Ride ==");
+            new SedanRide(noOfPassengers,distInKM,timeInMinutes).getRideRequestMessage();
         }
 
         if (canTakeTrip()) {

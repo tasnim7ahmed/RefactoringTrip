@@ -6,6 +6,7 @@ public class MotorBikeRide {
     {
         this.noOfPassengers = noOfPassengers;
         this.distInKM = distInKM;
+        this.timeInMinutes = timeInMinutes;
     }
 
     public boolean canTakeTrip()
@@ -17,5 +18,10 @@ public class MotorBikeRide {
     {
         int totalFare = Math.max(25, distInKM * 20);
         return totalFare/noOfPassengers;
+    }
+
+    public void getRideRequestMessage()
+    {
+        System.out.println("== Ride Swift in Bike ==");
     }
 }

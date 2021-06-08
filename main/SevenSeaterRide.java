@@ -6,6 +6,7 @@ public class SevenSeaterRide {
     {
         this.noOfPassengers = noOfPassengers;
         this.distInKM = distInKM;
+        this.timeInMinutes = timeInMinutes;
     }
 
     public boolean canTakeTrip()
@@ -21,5 +22,10 @@ public class SevenSeaterRide {
         else
             totalFare = (distInKM * 30);
         return totalFare/noOfPassengers;
+    }
+
+    public void getRideRequestMessage()
+    {
+        System.out.println("== Ride with Friends and Family in Seven-Seater ==");
     }
 }

@@ -1,11 +1,12 @@
 package main;
 
 public class SedanRide {
-    private int noOfPassengers, distInKM, distInKm, timeInMinutes;
+    private int noOfPassengers, distInKM, timeInMinutes;
     SedanRide(int noOfPassengers, int distInKM, int timeInMinutes)
     {
         this.noOfPassengers = noOfPassengers;
         this.distInKM = distInKM;
+        this.timeInMinutes = timeInMinutes;
     }
 
     public boolean canTakeTrip()
@@ -17,5 +18,11 @@ public class SedanRide {
     {
         int totalFare = 50 + distInKM * 30 + timeInMinutes * 2;
         return totalFare/noOfPassengers;
+
+    }
+
+    public void getRideRequestMessage()
+    {
+        System.out.println("== Comfortable Sedan Ride ==");
     }
 }
