@@ -38,20 +38,15 @@ public class Trip {
         int fare = -1;
         switch (rideType) {
             case "SEDAN":
-                fare = (50 + distInKM * 30 + timeInMinutes * 2);
+                fare = new SedanRide(noOfPassengers,distInKM,timeInMinutes).perHeadFare();
                 break;
-            case "MOTOR_BIKE":
-                fare = Math.max(25, distInKM * 20);
+            case "SEVEN_SEATER":
+                fare = new SevenSeaterRide(noOfPassengers,distInKM,timeInMinutes).perHeadFare();
                 break;
             default:
-                if (distInKM < 10)
-                    fare = 300;
-                else
-                    fare = (distInKM * 30);
-
+                fare = new MotorBikeRide(noOfPassengers,distInKM,timeInMinutes).perHeadFare();
                 break;
         }
-        fare = fare / noOfPassengers;
 
         return fare - (fare % 5);
     }
@@ -62,11 +57,11 @@ public class Trip {
 
         switch (rideType) {
             case "SEDAN":
-                return new SedanRide(noOfPassengers,distInKM).canTakeTrip();
+                return new SedanRide(noOfPassengers,distInKM,timeInMinutes).canTakeTrip();
             case "SEVEN_SEATER":
-                return new SevenSeaterRide(noOfPassengers,distInKM).canTakeTrip();
+                return new SevenSeaterRide(noOfPassengers,distInKM,timeInMinutes).canTakeTrip();
             default:
-                return new MotorBikeRide(noOfPassengers,distInKM).canTakeTrip();
+                return new MotorBikeRide(noOfPassengers,distInKM,timeInMinutes).canTakeTrip();
         }
     }
 }
