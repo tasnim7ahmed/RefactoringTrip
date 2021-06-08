@@ -1,6 +1,6 @@
 package main;
 
-public class SedanRide {
+public class SedanRide implements Ride{
     private int noOfPassengers, distInKM, timeInMinutes;
     SedanRide(int noOfPassengers, int distInKM, int timeInMinutes)
     {
@@ -21,8 +21,8 @@ public class SedanRide {
 
     }
 
-    public void getRideRequestMessage()
+    public String getRideRequestMessage()
     {
-        System.out.println("== Comfortable Sedan Ride ==");
+        return "== Comfortable Sedan Ride ==";
     }
 }

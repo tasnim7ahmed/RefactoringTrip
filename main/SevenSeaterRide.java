@@ -1,6 +1,6 @@
 package main;
 
-public class SevenSeaterRide {
+public class SevenSeaterRide implements Ride{
     private int noOfPassengers, distInKM, timeInMinutes;
     SevenSeaterRide(int noOfPassengers, int distInKM, int timeInMinutes)
     {
@@ -24,8 +24,8 @@ public class SevenSeaterRide {
         return totalFare/noOfPassengers;
     }
 
-    public void getRideRequestMessage()
+    public String getRideRequestMessage()
     {
-        System.out.println("== Ride with Friends and Family in Seven-Seater ==");
+        return "== Ride with Friends and Family in Seven-Seater ==";
     }
 }

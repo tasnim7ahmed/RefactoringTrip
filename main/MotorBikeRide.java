@@ -1,6 +1,6 @@
 package main;
 
-public class MotorBikeRide {
+public class MotorBikeRide implements Ride{
     private int noOfPassengers, distInKM, timeInMinutes;
     MotorBikeRide(int noOfPassengers, int distInKM, int timeInMinutes)
     {
@@ -20,8 +20,8 @@ public class MotorBikeRide {
         return totalFare/noOfPassengers;
     }
 
-    public void getRideRequestMessage()
+    public String getRideRequestMessage()
     {
-        System.out.println("== Ride Swift in Bike ==");
+        return "== Ride Swift in Bike ==";
     }
 }
