@@ -5,6 +5,7 @@ public class Trip {
     private int distInKM;
     private int timeInMinutes;
     private int noOfPassengers;
+    private Ride ride;
 
     public Trip(String rideType,
                 int distInKM,
@@ -14,16 +15,24 @@ public class Trip {
         this.distInKM = distInKM;
         this.timeInMinutes = timeInMinutes;
         this.noOfPassengers = noOfPassengers;
+        this.ride = getRide();
+    }
+
+    private Ride getRide()
+    {
+        Ride ride;
+        if (rideType == "MOTOR_BIKE") {
+            ride = new MotorBikeRide(noOfPassengers,distInKM,timeInMinutes);
+        } else if (rideType == "SEVEN_SEATER") {
+            ride = new SevenSeaterRide(noOfPassengers,distInKM,timeInMinutes);
+        } else {
+            ride = new SedanRide(noOfPassengers,distInKM,timeInMinutes);
+        }
+        return ride;
     }
 
     public void requestTrip() {
-        if (rideType == "MOTOR_BIKE") {
-            System.out.println(new MotorBikeRide(noOfPassengers,distInKM,timeInMinutes).getRideRequestMessage());
-        } else if (rideType == "SEVEN_SEATER") {
-            System.out.println(new SevenSeaterRide(noOfPassengers,distInKM,timeInMinutes).getRideRequestMessage());
-        } else {
-            System.out.println(new SedanRide(noOfPassengers,distInKM,timeInMinutes).getRideRequestMessage());
-        }
+        System.out.println(ride.getRideRequestMessage());
 
         if (canTakeTrip()) {
             System.out.println(distInKM + " KM");
@@ -36,32 +45,13 @@ public class Trip {
 
     public int perHeadFare() {
         int fare = -1;
-        switch (rideType) {
-            case "SEDAN":
-                fare = new SedanRide(noOfPassengers,distInKM,timeInMinutes).perHeadFare();
-                break;
-            case "SEVEN_SEATER":
-                fare = new SevenSeaterRide(noOfPassengers,distInKM,timeInMinutes).perHeadFare();
-                break;
-            default:
-                fare = new MotorBikeRide(noOfPassengers,distInKM,timeInMinutes).perHeadFare();
-                break;
-        }
-
+        fare = ride.perHeadFare();
         return fare - (fare % 5);
     }
 
     public boolean canTakeTrip() {
         if (noOfPassengers < 1)
             return false;
-
-        switch (rideType) {
-            case "SEDAN":
-                return new SedanRide(noOfPassengers,distInKM,timeInMinutes).canTakeTrip();
-            case "SEVEN_SEATER":
-                return new SevenSeaterRide(noOfPassengers,distInKM,timeInMinutes).canTakeTrip();
-            default:
-                return new MotorBikeRide(noOfPassengers,distInKM,timeInMinutes).canTakeTrip();
-        }
+       return ride.canTakeTrip();
     }
 }
