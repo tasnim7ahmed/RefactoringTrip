@@ -2,18 +2,18 @@ package main;
 
 public class Trip {
     private String rideType;
-    private int dist;
-    private int minutes;
-    private int noPass;
+    private int distInKM;
+    private int timeInMinutes;
+    private int noOfPassengers;
 
     public Trip(String rideType,
-                int dist,
-                int minutes,
-                int noPass) {
+                int distInKM,
+                int timeInMinutes,
+                int noOfPassengers) {
         this.rideType = rideType;
-        this.dist = dist;
-        this.minutes = minutes;
-        this.noPass = noPass;
+        this.distInKM = distInKM;
+        this.timeInMinutes = timeInMinutes;
+        this.noOfPassengers = noOfPassengers;
     }
 
     public void requestTrip() {
@@ -26,8 +26,8 @@ public class Trip {
         }
 
         if (canTakeTrip()) {
-            System.out.println(dist + " KM");
-            System.out.println(minutes + " Minutes");
+            System.out.println(distInKM + " KM");
+            System.out.println(timeInMinutes + " Minutes");
             System.out.println(perHeadFare() + " Taka Per Person");
         } else {
             System.out.println("Invalid Trip Request");
@@ -38,16 +38,16 @@ public class Trip {
         int fare = -1;
         switch (rideType) {
             case "SEDAN":
-                fare = (50 + dist * 30 + minutes * 2) / noPass;
+                fare = (50 + distInKM * 30 + timeInMinutes * 2) / noOfPassengers;
                 break;
             case "MOTOR_BIKE":
-                fare = Math.max(25, dist * 20) / noPass;
+                fare = Math.max(25, distInKM * 20) / noOfPassengers;
                 break;
             default:
-                if (dist < 10)
-                    fare = 300 / noPass;
+                if (distInKM < 10)
+                    fare = 300 / noOfPassengers;
                 else
-                    fare = (dist * 30) / noPass;
+                    fare = (distInKM * 30) / noOfPassengers;
 
                 break;
         }
@@ -56,16 +56,16 @@ public class Trip {
     }
 
     public boolean canTakeTrip() {
-        if (noPass < 1)
+        if (noOfPassengers < 1)
             return false;
 
         switch (rideType) {
             case "SEDAN":
-                return noPass <= 4 && dist <= 25;
+                return noOfPassengers <= 4 && distInKM <= 25;
             case "SEVEN_SEATER":
-                return noPass <= 7 && dist >= 10;
+                return noOfPassengers <= 7 && distInKM >= 10;
             default:
-                return noPass <= 1 && dist <= 10;
+                return noOfPassengers <= 1 && distInKM <= 10;
         }
     }
 }
