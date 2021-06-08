@@ -62,7 +62,7 @@ public class Trip {
 
         switch (rideType) {
             case "SEDAN":
-                return noOfPassengers <= 4 && distInKM <= 25;
+                return new SedanRide(noOfPassengers,distInKM).canTakeTrip();
             case "SEVEN_SEATER":
                 return noOfPassengers <= 7 && distInKM >= 10;
             default:
