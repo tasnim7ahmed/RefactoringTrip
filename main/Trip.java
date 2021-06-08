@@ -64,9 +64,9 @@ public class Trip {
             case "SEDAN":
                 return new SedanRide(noOfPassengers,distInKM).canTakeTrip();
             case "SEVEN_SEATER":
-                return noOfPassengers <= 7 && distInKM >= 10;
+                return new SevenSeaterRide(noOfPassengers,distInKM).canTakeTrip();
             default:
-                return noOfPassengers <= 1 && distInKM <= 10;
+                return new MotorBikeRide(noOfPassengers,distInKM).canTakeTrip();
         }
     }
 }
